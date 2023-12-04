@@ -1,0 +1,22 @@
+Invoke-RestMethod -Uri http://127.0.0.1:5000/prever_diagnostico -Method Post -Body '{
+    "Eritrócitos (10/µL)": 5.0,
+    "Hemoglobina (g/dL)": 14.0,
+    "Hematócrito (%)": 42.0,
+    "HCM": 33.0,
+    "VGM (fL)": 95.0,
+    "CHGM(%)": 34.0,
+    "Metarrubrícitos": 0.6,
+    "Proteína Plasmática": 7.5,
+    "Leucócitos (/µL)": 8000,
+    "Leucograma": 7000,
+    "Segmentados (/µL)": 5500,
+    "Bastonetes (/µL)": 180,
+    "Blastos": 2,
+    "Metamielócitos (/µL)": 45,
+    "Mielócitos (/µL)": 90,
+    "Linfócitos (/µL)": 1600,
+    "Monócitos (/µL)": 280,
+    "Eosinófilos (/µL)": 45,
+    "Basófilos (/µL)": 12,
+    "Plaquetas (/µL)": 220000
+}' -ContentType 'application/json; charset=utf-8'
