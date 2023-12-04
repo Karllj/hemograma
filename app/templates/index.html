@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prever Diagnóstico</title>
+</head>
+<body>
+    <h1>Prever Diagnóstico</h1>
+
+    <form id="preverForm">
+        <label for="eritrocitos">Eritrócitos (10/µL):</label>
+        <input type="text" id="eritrocitos" name="eritrocitos" required>
+        <br>
+
+        <label for="hemoglobina">Hemoglobina (g/dL):</label>
+        <input type="text" id="hemoglobina" name="hemoglobina" required>
+        <br>
+
+        <label for="hematocrito">Hematócrito (%):</label>
+        <input type="text" id="hematocrito" name="hematocrito" required>
+        <br>
+
+        <label for="hcm">HCM:</label>
+        <input type="text" id="hcm" name="hcm" required>
+        <br>
+
+        <label for="vgm">VGM (fL):</label>
+        <input type="text" id="vgm" name="vgm" required>
+        <br>
+
+        <label for="chgm">CHGM (%):</label>
+        <input type="text" id="chgm" name="chgm" required>
+        <br>
+
+        <label for="metarrubrictos">Metarrubrícitos:</label>
+        <input type="text" id="metarrubrictos" name="metarrubrictos" required>
+        <br>
+
+        <label for="proteina_plasmatica">Proteína Plasmática:</label>
+        <input type="text" id="proteina_plasmatica" name="proteina_plasmatica" required>
+        <br>
+
+        <label for="leucocitos">Leucócitos (/µL):</label>
+        <input type="text" id="leucocitos" name="leucocitos" required>
+        <br>
+
+        <label for="leucograma">Leucograma:</label>
+        <input type="text" id="leucograma" name="leucograma" required>
+        <br>
+
+        <label for="segmentados">Segmentados (/µL):</label>
+        <input type="text" id="segmentados" name="segmentados" required>
+        <br>
+
+        <label for="bastonetes">Bastonetes (/µL):</label>
+        <input type="text" id="bastonetes" name="bastonetes" required>
+        <br>
+
+        <label for="blastos">Blastos:</label>
+        <input type="text" id="blastos" name="blastos" required>
+        <br>
+
+        <label for="metamielocitos">Metamielócitos (/µL):</label>
+        <input type="text" id="metamielocitos" name="metamielocitos" required>
+        <br>
+
+        <label for="mielocitos">Mielócitos (/µL):</label>
+        <input type="text" id="mielocitos" name="mielocitos" required>
+        <br>
+
+        <label for="linfocitos">Linfócitos (/µL):</label>
+        <input type="text" id="linfocitos" name="linfocitos" required>
+        <br>
+
+        <label for="monocitos">Monócitos (/µL):</label>
+        <input type="text" id="monocitos" name="monocitos" required>
+        <br>
+
+        <label for="eosinofilos">Eosinófilos (/µL):</label>
+        <input type="text" id="eosinofilos" name="eosinofilos" required>
+        <br>
+
+        <label for="basofilos">Basófilos (/µL):</label>
+        <input type="text" id="basofilos" name="basofilos" required>
+        <br>
+
+        <label for="plaquetas">Plaquetas (/µL):</label>
+        <input type="text" id="plaquetas" name="plaquetas" required>
+        <br>
+
+        <button type="button" onclick="preverDiagnostico()">Prever Diagnóstico</button>
+    </form>
+
+    <!-- Campo de resultado -->
+    <div id="resultado">Diagnóstico: </div>
+
+
+    <script>
+        function preverDiagnostico() {
+            var formData = {
+                eritrocitos: document.getElementById('eritrocitos').value,
+                hemoglobina: document.getElementById('hemoglobina').value,
+                hematocrito: document.getElementById('hematocrito').value,
+                hcm: document.getElementById('hcm').value,
+                vgm: document.getElementById('vgm').value,
+                chgm: document.getElementById('chgm').value,
+                metarrubrictos: document.getElementById('metarrubrictos').value,
+                proteina_plasmatica: document.getElementById('proteina_plasmatica').value,
+                leucocitos: document.getElementById('leucocitos').value,
+                leucograma: document.getElementById('leucograma').value,
+                segmentados: document.getElementById('segmentados').value,
+                bastonetes: document.getElementById('bastonetes').value,
+                blastos: document.getElementById('blastos').value,
+                metamielocitos: document.getElementById('metamielocitos').value,
+                mielocitos: document.getElementById('mielocitos').value,
+                linfocitos: document.getElementById('linfocitos').value,
+                monocitos: document.getElementById('monocitos').value,
+                eosinofilos: document.getElementById('eosinofilos').value,
+                basofilos: document.getElementById('basofilos').value,
+                plaquetas: document.getElementById('plaquetas').value,
+            };
+
+            fetch('/prever_diagnostico', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('resultado').innerHTML = 'Diagnóstico Previsto: ' + data.diagnostico_previsto;
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+            });
+        }
+    </script>
+</body>
+</html>
